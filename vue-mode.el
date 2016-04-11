@@ -63,6 +63,12 @@
             :back ,back)))
         (mmm-add-mode-ext-class 'vue-mode nil class-name)))))
 
+(defun vue-mode-reparse ()
+  "Reparse for `lang' changed"
+  (interactive)
+  (mmm-parse-buffer)
+  )
+
 (add-hook 'vue-mode-hook 'mmm-mode-on)
 
 (provide 'vue-mode)
