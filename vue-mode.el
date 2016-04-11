@@ -6,7 +6,7 @@
 ;; Keywords: languages
 
 ;; Version: 0.1
-;; Package-Requires: ((mmm-mode "0.5.4") (web-mode "13.1.17"))
+;; Package-Requires: ((mmm-mode "0.5.4"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
