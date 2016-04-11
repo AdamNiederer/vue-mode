@@ -31,8 +31,8 @@
 (add-to-list 'auto-mode-alist '("\\.vue\\'" . vue-mode))
 
 (require 'mmm-mode)
-(dolist (langsets '(("template" . ((default . html-mode)
-                                   (html . html-mode)
+(dolist (langsets '(("template" . ((default . web-mode)
+                                   (html . web-mode)
                                    (jade . jade-mode)
                                    ))
                     ("script" . ((default . js2-mode)
