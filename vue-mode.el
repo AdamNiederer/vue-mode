@@ -27,7 +27,7 @@
 
 ;;; Code:
 
-(define-derived-mode vue-mode web-mode "vue")
+(define-derived-mode vue-mode css-mode "vue")
 (add-to-list 'auto-mode-alist '("\\.vue\\'" . vue-mode))
 
 (require 'mmm-mode)
@@ -35,9 +35,9 @@
                                    (html . web-mode)
                                    (jade . jade-mode)
                                    ))
-                    ("script" . ((default . js2-mode)
-                                 (js . js2-mode)
-                                 (es6    . js2-mode)
+                    ("script" . ((default . js-mode)
+                                 (js . js-mode)
+                                 (es6    . js-mode)
                                  (coffee . coffee-mode)
                                  ))
                     ("style"  . ((default . css-mode)
