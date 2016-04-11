@@ -31,3 +31,7 @@ to your `package.el`
 ## Why `js-mode` instead of `js2-mode`?
 
 `js2-mode` does not yet work with "multi-mode" modes such as mmm-mode. See https://github.com/mooz/js2-mode/issues/124.
+
+## Mode didn't get updated when `lang` changed
+
+`M-x vue-mode-reparse`
