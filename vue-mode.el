@@ -27,7 +27,9 @@
 
 ;;; Code:
 
+;;;###autoload
 (define-derived-mode vue-mode css-mode "vue")
+;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.vue\\'" . vue-mode))
 
 (require 'mmm-mode)
