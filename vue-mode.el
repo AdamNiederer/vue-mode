@@ -42,7 +42,7 @@
                                  (es6    . js-mode)
                                  (coffee . coffee-mode)
                                  ))
-                    ("style"  . ((default . css-mode)
+                    ("style"  . ((default . stylus-mode)
                                  (css    . css-mode  )
                                  (stylus . stylus-mode)
                                  (less   . less-css-mode)
