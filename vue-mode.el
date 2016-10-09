@@ -61,15 +61,10 @@
     map)
   "Keymap for vue-mode")
 
-(defun vue-mode-reparse ()
-  "Reparse the buffer, reapplying all major modes"
-  (interactive)
-  (mmm-parse-buffer))
+(defvar vue-initialized nil
+  "If false, vue-mode still needs to prepare mmm-mode before being activated.")
 
-(add-hook 'vue-mode-hook 'mmm-mode-on)
-
-;;;###autoload
-(define-derived-mode vue-mode html-mode "vue"
+(defun vue--setup-mmm ()
   (dolist (mode-binding vue-modes)
     (let* ((type (plist-get mode-binding :type))
            (name (plist-get mode-binding :name))
@@ -79,7 +74,19 @@
                            (format (format "<%s *\\(scoped\\)?>\n" type))))
            (back (format "</%s>" type)))
       (mmm-add-classes `((,class :submode ,mode :front ,front :back ,back)))
-      (mmm-add-mode-ext-class 'vue-mode nil class))))
+      (mmm-add-mode-ext-class 'vue-mode nil class)))
+  (setq vue-initialized t))
+
+(defun vue-mode-reparse ()
+  "Reparse the buffer, reapplying all major modes"
+  (interactive)
+  (mmm-parse-buffer))
+
+;;;###autoload
+(define-derived-mode vue-mode html-mode "vue"
+  (when (not vue-initialized)
+    (vue--setup-mmm))
+  (mmm-mode-on))
 
 ;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.vue\\'" . vue-mode))
