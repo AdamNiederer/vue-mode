@@ -55,6 +55,12 @@
   :type '(list (plist :type 'symbol :name 'symbol :mode 'function))
   :group 'vue)
 
+(defvar vue-mode-map
+  (let ((map (make-keymap)))
+    (define-key map (kbd "C-c C-l") 'vue-mode-reparse)
+    map)
+  "Keymap for vue-mode")
+
 (defun vue-mode-reparse ()
   "Reparse the buffer, reapplying all major modes"
   (interactive)
