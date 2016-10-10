@@ -1,11 +1,11 @@
 ;;; vue-mode.el --- Major mode for vue component based on web-mode and mmm-mode  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2016  codefalling
+;; Copyright (C) 2016 codefalling, Adam Niederer
 
 ;; Author: codefalling <code.falling@gmail.com>
 ;; Keywords: languages
 
-;; Version: 0.1
+;; Version: 0.2
 ;; Package-Requires: ((mmm-mode "0.5.4"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -27,51 +27,69 @@
 
 ;;; Code:
 
-;;;###autoload
-(define-derived-mode vue-mode css-mode "vue")
-;;;###autoload
-(add-to-list 'auto-mode-alist '("\\.vue\\'" . vue-mode))
-
 (require 'mmm-mode)
-(dolist (langsets '(("template" . ((default . web-mode)
-                                   (html . web-mode)
-                                   (jade . jade-mode)
-                                   ))
-                    ("script" . ((default . js-mode)
-                                 (js . js-mode)
-                                 (es6    . js-mode)
-                                 (coffee . coffee-mode)
-                                 ))
-                    ("style"  . ((default . css-mode)
-                                 (css    . css-mode  )
-                                 (stylus . stylus-mode)
-                                 (less   . less-css-mode)
-                                 (scss   . scss-mode)
-                                 (sass   . sass-mode)
-                                 ))))
-  (let ((tag (car langsets)))
-    (dolist (pair (cdr langsets))
-      (let* ((lang       (car pair))
-             (submode    (cdr pair))
-             (class-name (make-symbol (format "vueify-%s-%s" tag lang)))
-             (front      (if (eq lang 'default)
-                             (format "<%s *\\(scoped\\)?>" tag)
-                           (format "<%s *lang=\"%s\" *\\(scoped\\)?>" tag lang)))
-             (back       (format "</%s>" tag)))
-        (mmm-add-classes
-         `((,class-name
-            :submode ,submode
-            :front ,front
-            :back ,back)))
-        (mmm-add-mode-ext-class 'vue-mode nil class-name)))))
+
+(defgroup vue nil
+  "Group for vue-mode"
+  :prefix "vue-"
+  :group 'languages
+  :link '(url-link :tag "Github" "https://github.com/CodeFalling/vue-mode")
+  :link '(emacs-commentary-link :tag "Commentary" "vue-mode"))
+
+(defcustom vue-modes
+  '((:type template :name nil :mode web-mode)
+    (:type template :name html :mode html-mode)
+    (:type template :name jade :mode jade-mode)
+    (:type script :name nil :mode js-mode)
+    (:type script :name js :mode js-mode)
+    (:type script :name es6 :mode js-mode)
+    (:type script :name coffee :mode coffee-mode)
+    (:type script :name typescript :mode typescript-mode)
+    (:type style :name nil :mode css-mode)
+    (:type style :name css :mode css-mode)
+    (:type style :name stylus :mode stylus-mode)
+    (:type style :name less :mode less-css-mode)
+    (:type style :name scss :mode scss-mode)
+    (:type style :name sass :mode sass-mode))
+  "A list of vue component languages, their type, and their corresponding major modes"
+  :type '(list (plist :type 'symbol :name 'symbol :mode 'function))
+  :group 'vue)
+
+(defvar vue-mode-map
+  (let ((map (make-keymap)))
+    (define-key map (kbd "C-c C-l") 'vue-mode-reparse)
+    map)
+  "Keymap for vue-mode")
+
+(defvar vue-initialized nil
+  "If false, vue-mode still needs to prepare mmm-mode before being activated.")
+
+(defun vue--setup-mmm ()
+  (dolist (mode-binding vue-modes)
+    (let* ((type (plist-get mode-binding :type))
+           (name (plist-get mode-binding :name))
+           (mode (plist-get mode-binding :mode))
+           (class (make-symbol (format "vue-%s" name)))
+           (front (if name (format "<%s *lang=\"%s\" *\\(scoped\\)?>\n" type name)
+                           (format (format "<%s *\\(scoped\\)?>\n" type))))
+           (back (format "</%s>" type)))
+      (mmm-add-classes `((,class :submode ,mode :front ,front :back ,back)))
+      (mmm-add-mode-ext-class 'vue-mode nil class)))
+  (setq vue-initialized t))
 
 (defun vue-mode-reparse ()
-  "Reparse for `lang' changed"
+  "Reparse the buffer, reapplying all major modes"
   (interactive)
-  (mmm-parse-buffer)
-  )
+  (mmm-parse-buffer))
 
-(add-hook 'vue-mode-hook 'mmm-mode-on)
+;;;###autoload
+(define-derived-mode vue-mode html-mode "vue"
+  (when (not vue-initialized)
+    (vue--setup-mmm))
+  (mmm-mode-on))
+
+;;;###autoload
+(add-to-list 'auto-mode-alist '("\\.vue\\'" . vue-mode))
 
 (provide 'vue-mode)
 ;;; vue-mode.el ends here
