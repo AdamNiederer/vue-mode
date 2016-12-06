@@ -85,10 +85,10 @@
 ;;;###autoload
 (define-derived-mode vue-mode html-mode "vue"
   (when (not vue-initialized)
-    (vue--setup-mmm))
-  (mmm-mode-on))
+    (vue--setup-mmm)))
 
 ;;;###autoload
+(setq mmm-global-mode 'maybe)
 (add-to-list 'auto-mode-alist '("\\.vue\\'" . vue-mode))
 
 (provide 'vue-mode)
