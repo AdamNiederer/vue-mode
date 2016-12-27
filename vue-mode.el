@@ -40,6 +40,7 @@
   '((:type template :name nil :mode web-mode)
     (:type template :name html :mode html-mode)
     (:type template :name jade :mode jade-mode)
+    (:type template :name pug :mode pug-mode)
     (:type script :name nil :mode js-mode)
     (:type script :name js :mode js-mode)
     (:type script :name es6 :mode js-mode)
