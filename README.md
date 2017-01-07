@@ -17,14 +17,24 @@ Add
                      :repo "codefalling/vue-mode"))
 ```
 
-to your `packages`.and 
+to your `packages`.and
 
 ```lisp
 (defun your-layer-name/init-vue-mode ()
   (use-package vue-mode))
 ```
 
-to your `package.el`
+to your `package.el`.
+
+And you could custom the region background color if you need (default is highlight):
+
+```lisp
+(defun your-layer-name/init-vue-mode ()
+  (use-package vue-mode
+    :config
+    ;; 0, 1, or 2, representing (respectively) none, low, and high coloring
+    (setq mmm-submode-decoration-level 0)))
+```
 
 # Q&A
 
