@@ -44,6 +44,7 @@
     (:type script :name nil :mode js-mode)
     (:type script :name js :mode js-mode)
     (:type script :name es6 :mode js-mode)
+    (:type script :name babel :mode js-mode)
     (:type script :name coffee :mode coffee-mode)
     (:type script :name typescript :mode typescript-mode)
     (:type style :name nil :mode css-mode)
