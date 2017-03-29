@@ -74,6 +74,8 @@
            (name (plist-get mode-binding :name))
            (mode (plist-get mode-binding :mode))
            (class (make-symbol (format "vue-%s" name)))
+           (front (if name (format "<%s +lang=\"%s\"\\( +scoped\\)?>\n" type name)
+                           (format (format "<%s\\( +scoped\\)?>\n" type))))
            (front (if name (format "<%s( lang=\"%s\" *\\(scoped\\)?)?>\n" type name)
                            (format (format "<%s( \\(scoped\\)?)?>\n" type))))
            (back (format "</%s>" type)))
