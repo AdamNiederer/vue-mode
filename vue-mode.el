@@ -53,7 +53,7 @@
     (:type style :name css :mode css-mode)
     (:type style :name stylus :mode stylus-mode)
     (:type style :name less :mode less-css-mode)
-    (:type style :name scss :mode scss-mode)
+    (:type style :name scss :mode css-mode)
     (:type style :name sass :mode ssass-mode))
   "A list of vue component languages, their type, and their corresponding major modes"
   :type '(list (plist :type 'symbol :name 'symbol :mode 'function))
