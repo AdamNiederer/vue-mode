@@ -1,3 +1,7 @@
+![](https://img.shields.io/badge/Maintained%3F-NO%20LONGER-red.svg?style=flat)
+
+**THIS PROJECT IS NO LONGER MAINTAINED**, please use `web-mode` instead. If someone have interest in maintaining, please contact me.
+
 ![https://github.com/syl20bnr/spacemacs](https://cdn.rawgit.com/syl20bnr/spacemacs/442d025779da2f62fc86c2082703697714db6514/assets/spacemacs-badge.svg)
 [![MELPA](https://melpa.org/packages/vue-mode-badge.svg)](https://melpa.org/#/vue-mode)
 
