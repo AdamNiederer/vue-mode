@@ -93,6 +93,8 @@
 
 ;;;###autoload
 (setq mmm-global-mode 'maybe)
+
+;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.vue\\'" . vue-mode))
 
 (provide 'vue-mode)
