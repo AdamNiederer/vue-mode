@@ -9,6 +9,15 @@ Emacs major mode for vue.js based on `mmm-mode`.
 ![2016-04-10 10 44 46](https://cloud.githubusercontent.com/assets/5436704/14410955/4f130d5e-ff6e-11e5-87a5-4fbd0008b475.png)
 
 # Install
+
+Emacs users may install the package from MELPA, and then add the following to their `init.el`:
+
+```elisp
+(require 'vue-mode)
+```
+
+`vue-mode` should then be activated on all files with a `.vue` extension
+
 ## Spacemacs
 
 Add
