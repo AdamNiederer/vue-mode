@@ -28,13 +28,13 @@ Emacs users may install the package from MELPA, and then add the following to th
    2. This will bring you to the edit screen of the `.spacemacs` file.
    3. Locate the section named `dotspacemacs-additional-packages '()`
    4. The following code should go inside the above parenthesis, like so:
-    ```lisp
-    dotspacemacs-additional-packages '(
-    (vue-mode :location (recipe
-                         :fetcher github
-                         :repo "codefalling/vue-mode"))
-    )
-    ```
+   ```lisp
+   dotspacemacs-additional-packages '(
+   (vue-mode :location (recipe
+                        :fetcher github
+                        :repo "codefalling/vue-mode"))
+   )
+   ```
    5. Locate the section named `defun dotspacemacs/user-config ()`
    6. The following code should code right in that section, like so:
    ```lisp
