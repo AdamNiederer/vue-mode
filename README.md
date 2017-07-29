@@ -60,6 +60,7 @@ Emacs users may install the package from MELPA, and then add the following to th
    (defun dotspacemacs/init-vue-mode ()
      (use-package vue-mode))
    )
+   )
    ```
    7. So we made 2 changes to the `.spacemacs` file, time to save them, press `SPC` `f` `s`
    8. With the saved file, time to make Spacemacs re-read the configuration, pressing `SPC` `f` `e` `R`
