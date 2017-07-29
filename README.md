@@ -37,46 +37,46 @@ Emacs users may install the package from MELPA, and then add the following to th
     ```
    5. Locate the section named `defun dotspacemacs/user-config ()`
    6. The following code should code right in that section, like so:
-    ```lisp
-    (defun dotspacemacs/user-config ()
-    "Configuration function for user code.
-    This function is called at the very end of Spacemacs initialization after
-    layers configuration.
-    This is the place where most of your configurations should be done. Unless it is
-    explicitly specified that a variable should be set before a package is loaded,
-    you should place your code here."
-    (defun dotspacemacs/init-vue-mode ()
-      (use-package vue-mode))
-    )
-    ```
-    7. So we made 2 changes to the `.spacemacs` file, time to save them, press `SPC` `f` `s`
-    8. With the saved file, time to make Spacemacs re-read the configuration, pressing `SPC` `f` `e` `R`
+   ```lisp
+   (defun dotspacemacs/user-config ()
+   "Configuration function for user code.
+   This function is called at the very end of Spacemacs initialization after
+   layers configuration.
+   This is the place where most of your configurations should be done. Unless it is
+   explicitly specified that a variable should be set before a package is loaded,
+   you should place your code here."
+   (defun dotspacemacs/init-vue-mode ()
+     (use-package vue-mode))
+   )
+   ```
+   7. So we made 2 changes to the `.spacemacs` file, time to save them, press `SPC` `f` `s`
+   8. With the saved file, time to make Spacemacs re-read the configuration, pressing `SPC` `f` `e` `R`
 
 #### B. The [more complex](http://spacemacs.org/doc/DOCUMENTATION.html#without-a-layer) way: Creating a new specific layer 
 
    1. Add to your `packages`:
-    ```lisp
-    (vue-mode :location (recipe
-                         :fetcher github
-                         :repo "codefalling/vue-mode"))
-    ```
+   ```lisp
+   (vue-mode :location (recipe
+                        :fetcher github
+                        :repo "codefalling/vue-mode"))
+   ```
    2. Add to your `package.el`:
 
-    ```lisp
-    (defun your-layer-name/init-vue-mode ()
-      (use-package vue-mode))
-    ```
+   ```lisp
+   (defun your-layer-name/init-vue-mode ()
+     (use-package vue-mode))
+   ```
 
 
    3. If you want to customize the region background color (default is highlight):
 
-    ```lisp
-    (defun your-layer-name/init-vue-mode ()
-      (use-package vue-mode
-        :config
-        ;; 0, 1, or 2, representing (respectively) none, low, and high coloring
-        (setq mmm-submode-decoration-level 0)))
-    ```
+   ```lisp
+   (defun your-layer-name/init-vue-mode ()
+     (use-package vue-mode
+       :config
+       ;; 0, 1, or 2, representing (respectively) none, low, and high coloring
+       (setq mmm-submode-decoration-level 0)))
+   ```
 
 # Q&A
 
