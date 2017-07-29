@@ -27,7 +27,13 @@ Emacs users may install the package from MELPA, and then add the following to th
    1. Within any screen in Spacemacs (including the Splash Screen, after loading), press `SPC` `f` `e` `d`.
    2. This will bring you to the edit screen of the `.spacemacs` file.
    3. Locate the section named `dotspacemacs-additional-packages '()`
-   4. The following code should go inside the above parenthesis, like so:
+   4. The following code should go inside the above parenthesis:
+   ```lisp
+   (vue-mode :location (recipe
+                        :fetcher github
+                        :repo "codefalling/vue-mode"))
+   ```
+   • So the section should look like this, after the update:
    ```lisp
    dotspacemacs-additional-packages '(
    (vue-mode :location (recipe
@@ -35,8 +41,14 @@ Emacs users may install the package from MELPA, and then add the following to th
                         :repo "codefalling/vue-mode"))
    )
    ```
-   5. Locate the section named `defun dotspacemacs/user-config ()`
-   6. The following code should code right in that section, like so:
+   5. Locate, in the same file, the section named `defun dotspacemacs/user-config ()`
+   6. The following code should code right in that section:
+   ```lisp
+   (defun dotspacemacs/init-vue-mode ()
+     (use-package vue-mode))
+   )
+   ```
+   • So the section should look like this, after the update:
    ```lisp
    (defun dotspacemacs/user-config ()
    "Configuration function for user code.
