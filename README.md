@@ -42,7 +42,7 @@ Emacs users may install the package from MELPA, and then add the following to th
    )
    ```
    5. Locate, in the same file, the section named `defun dotspacemacs/user-config ()`
-   6. The following code should code right in that section:
+   6. The following code should go right in that section:
    ```lisp
    (defun dotspacemacs/init-vue-mode ()
      (use-package vue-mode))
