@@ -38,15 +38,13 @@ Emacs users may install the package from MELPA, and then add the following to th
    dotspacemacs-additional-packages '(
    (vue-mode :location (recipe
                         :fetcher github
-                        :repo "codefalling/vue-mode"))
-   )
+                        :repo "codefalling/vue-mode")))
    ```
    5. Locate, in the same file, the section named `defun dotspacemacs/user-config ()`
    6. The following code should go right in that section:
    ```lisp
    (defun dotspacemacs/init-vue-mode ()
-     (use-package vue-mode))
-   )
+     (use-package vue-mode)))
    ```
    • So the section should look like this, after the update:
    ```lisp
@@ -58,9 +56,7 @@ Emacs users may install the package from MELPA, and then add the following to th
    explicitly specified that a variable should be set before a package is loaded,
    you should place your code here."
    (defun dotspacemacs/init-vue-mode ()
-     (use-package vue-mode))
-   )
-   )
+     (use-package vue-mode)))
    ```
    7. So we made 2 changes to the `.spacemacs` file, time to save them, press `SPC` `f` `s`
    8. With the saved file, time to make Spacemacs re-read the configuration, pressing `SPC` `f` `e` `R`
