@@ -33,7 +33,7 @@ Emacs users may install the package from MELPA, and then add the following to th
                         :fetcher github
                         :repo "codefalling/vue-mode"))
    ```
-   • So the section should look like this, after the update:
+   The section should look like this, after the update:
    ```lisp
    dotspacemacs-additional-packages '(
    (vue-mode :location (recipe
@@ -61,7 +61,7 @@ Emacs users may install the package from MELPA, and then add the following to th
    7. So we made 2 changes to the `.spacemacs` file, time to save them, press `SPC` `f` `s`
    8. With the saved file, time to make Spacemacs re-read the configuration, pressing `SPC` `f` `e` `R`
 
-#### B. The [more complex](http://spacemacs.org/doc/DOCUMENTATION.html#without-a-layer) way: Creating a new specific layer 
+#### B. The [more complex](http://spacemacs.org/doc/DOCUMENTATION.html#without-a-layer) way: Creating a new specific layer
 
    1. Add to your `packages`:
    ```lisp
