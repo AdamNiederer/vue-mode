@@ -44,7 +44,7 @@ Emacs users may install the package from MELPA, and then add the following to th
    6. The following code should go right in that section:
    ```lisp
    (defun dotspacemacs/init-vue-mode ()
-     (use-package vue-mode)))
+     (use-package vue-mode))
    ```
    • So the section should look like this, after the update:
    ```lisp
