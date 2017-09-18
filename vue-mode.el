@@ -58,7 +58,7 @@
     (:type style :name less :mode less-css-mode)
     (:type style :name scss :mode css-mode)
     (:type style :name sass :mode ssass-mode))
-  "A list of vue component languages, their type, and their corresponding major modes"
+  "A list of vue component languages, their type, and their corresponding major modes."
   :type '(list (plist :type 'symbol :name 'symbol :mode 'function))
   :group 'vue)
 
@@ -66,12 +66,13 @@
   (let ((map (make-keymap)))
     (define-key map (kbd "C-c C-l") 'vue-mode-reparse)
     map)
-  "Keymap for vue-mode")
+  "Keymap for vue-mode.")
 
 (defvar vue-initialized nil
   "If false, vue-mode still needs to prepare mmm-mode before being activated.")
 
 (defun vue--setup-mmm ()
+  "Add syntax highlighting regions to mmm-mode, according to `vue-modes'."
   (dolist (mode-binding vue-modes)
     (let* ((type (plist-get mode-binding :type))
            (name (plist-get mode-binding :name))
@@ -85,7 +86,7 @@
   (setq vue-initialized t))
 
 (defun vue-mode-reparse ()
-  "Reparse the buffer, reapplying all major modes"
+  "Reparse the buffer, reapplying all major modes."
   (interactive)
   (mmm-parse-buffer))
 
