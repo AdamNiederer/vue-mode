@@ -1,4 +1,4 @@
-;;; vue-mode.el --- Major mode for vue component based on web-mode and mmm-mode  -*- lexical-binding: t; -*-
+;;; vue-mode.el --- Major mode for vue component based on mmm-mode  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2016 codefalling, Adam Niederer
 
