@@ -78,7 +78,7 @@
            (mode (plist-get mode-binding :mode))
            (class (make-symbol (format "vue-%s" name)))
            (front (if name (format "<%s.+?lang=\"%s\"\\( +scoped\\)?.*?>\n" type name)
-                    (format "<%s\\( +scoped\\)?.*?>\n" type)))
+                    (format "<%s\\( +scoped\\)? *?>\n" type)))
            (back (format "^</%s *>" type)))
       (mmm-add-classes `((,class :submode ,mode :front ,front :back ,back)))
       (mmm-add-mode-ext-class 'vue-mode nil class)))
