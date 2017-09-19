@@ -5,8 +5,8 @@
 ;; Author: codefalling <code.falling@gmail.com>
 ;; Keywords: languages
 
-;; Version: 0.2
-;; Package-Requires: ((mmm-mode "0.5.4") (vue-html-mode "0.1") (ssass-mode "0.1"))
+;; Version: 0.3
+;; Package-Requires: ((mmm-mode "0.5.4") (vue-html-mode "0.1") (ssass-mode "0.1") (edit-indirect "0.1.4"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -30,6 +30,7 @@
 (require 'mmm-mode)
 (require 'vue-html-mode)
 (require 'ssass-mode)
+(require 'edit-indirect)
 
 (defgroup vue nil
   "Group for vue-mode"
@@ -65,6 +66,7 @@
 (defvar vue-mode-map
   (let ((map (make-keymap)))
     (define-key map (kbd "C-c C-l") 'vue-mode-reparse)
+    (define-key map (kbd "C-c C-k") 'vue-mode-edit-indirect-at-point)
     map)
   "Keymap for vue-mode.")
 
@@ -89,6 +91,17 @@
   "Reparse the buffer, reapplying all major modes."
   (interactive)
   (mmm-parse-buffer))
+
+(defun vue-mode-edit-indirect-at-point ()
+  "Open the section of the template at point with `edit-indirect-mode'."
+  (interactive)
+  (if mmm-current-overlay
+      (let ((indirect-mode mmm-current-submode))
+        (setq-local edit-indirect-after-creation-hook (list (lambda () (funcall indirect-mode))))
+        (edit-indirect-region (overlay-start mmm-current-overlay)
+                              (1- (overlay-end mmm-current-overlay)) ;; Work around edit-indirect-mode bug
+                              (current-buffer)))
+    (user-error "Not in a template subsection")))
 
 ;;;###autoload
 (define-derived-mode vue-mode html-mode "vue"
