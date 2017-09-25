@@ -73,6 +73,41 @@
 (defvar vue-initialized nil
   "If false, `vue-mode' still needs to prepare `mmm-mode' before being activated.")
 
+(defconst vue--not-lang-key
+  (concat
+   "\\(?:"
+   "\\w\\{1,3\\}=" ; Either a 3-character word, or
+   "\\|"
+   "[^l]\\w\\w\\w=" ; Anything not starting with a lowercase l, or
+   "\\|"
+   "\\w[^a]\\w\\w=" ; Anything without a in the second position, or
+   "\\|"
+   "\\w\\w[^n]\\w=" ; Anything without n in the third position, or
+   "\\|"
+   "\\w\\w\\w[^g]=" ; Anything without g in the fourth position, or
+   "\\w\\{5,\\}=" ; A 5+-character word
+   "\\)")
+  "Matches anything but 'lang'. See `vue--front-tag-regex'")
+
+(defconst vue--front-tag-lang-regex
+  (concat "<%s"                        ; The tag name
+          "\\(?: +\\w+=\".*?\" *?\\)*" ; Any optional key-value pairs like type="foo/bar"
+          " +lang=\"%s\""              ; The language specifier
+          "\\(?: +\\w+=\".*?\" *?\\)*" ; More optional key-value pairs
+          "\\(?: +scoped\\)?"          ; The optional "scoped" attribute
+          " *>\n")                     ; The end of the tag
+  "A regular expression for the starting tags of template areas with languages.
+To be formatted with the tag name, and the language.")
+
+(defconst vue--front-tag-regex
+  (concat "<%s"                        ; The tag name
+          "\\(?: +" vue--not-lang-key "\".*?\" *?\\)*" ; Any optional key-value pairs like type="foo/bar".
+          ;; ^ Disallow "lang" in k/v pairs to avoid matching regions with non-default languages
+          "\\(?: +scoped\\)?"          ; The optional "scoped" attribute
+          " *>\n")                     ; The end of the tag
+  "A regular expression for the starting tags of template areas.
+To be formatted with the tag name.")
+
 (defun vue--setup-mmm ()
   "Add syntax highlighting regions to mmm-mode, according to `vue-modes'."
   (dolist (mode-binding vue-modes)
@@ -80,9 +115,9 @@
            (name (plist-get mode-binding :name))
            (mode (plist-get mode-binding :mode))
            (class (make-symbol (format "vue-%s" name)))
-           (front (if name (format "<%s.+?lang=\"%s\"\\( +scoped\\)?.*?>\n" type name)
-                    (format "<%s\\( +scoped\\)? *?>\n" type)))
-           (back (format "^</%s *>" type)))
+           (front (if name (format vue--front-tag-lang-regex type name)
+                    (format vue--front-tag-regex type)))
+           (back (format "^</%s>" type)))
       (mmm-add-classes `((,class :submode ,mode :front ,front :back ,back)))
       (mmm-add-mode-ext-class 'vue-mode nil class)))
   (setq vue-initialized t))
