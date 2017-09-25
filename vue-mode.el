@@ -68,10 +68,10 @@
     (define-key map (kbd "C-c C-l") 'vue-mode-reparse)
     (define-key map (kbd "C-c C-k") 'vue-mode-edit-indirect-at-point)
     map)
-  "Keymap for vue-mode.")
+  "Keymap for `vue-mode'.")
 
 (defvar vue-initialized nil
-  "If false, vue-mode still needs to prepare mmm-mode before being activated.")
+  "If false, `vue-mode' still needs to prepare `mmm-mode' before being activated.")
 
 (defun vue--setup-mmm ()
   "Add syntax highlighting regions to mmm-mode, according to `vue-modes'."
