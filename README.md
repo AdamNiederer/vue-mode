@@ -16,17 +16,17 @@ Emacs users may install the package from MELPA, and then add the following to th
 (require 'vue-mode)
 ```
 
-`vue-mode` should then be activated on all files with a `.vue` extension
+`vue-mode` should then be activated on all files with a `.vue` extension.
 
 ## Spacemacs
 
 ### There are [two ways](http://spacemacs.org/doc/DOCUMENTATION.html#configure-packages) to install and configure Spacemacs Packages:
 
-#### A. The fastest way: Adding the necessary configurations to the default configuration file `.spacemacs`
+#### A. The fastest way: Adding the necessary configurations to the default configuration file `.spacemacs`.
 
    1. Within any screen in Spacemacs (including the Splash Screen, after loading), press `SPC` `f` `e` `d`.
    2. This will bring you to the edit screen of the `.spacemacs` file.
-   3. Locate the section named `dotspacemacs-additional-packages '()`
+   3. Locate the section named `dotspacemacs-additional-packages '()`.
    4. The following code should go inside the above parenthesis:
    ```lisp
    (vue-mode :location (recipe
@@ -40,7 +40,7 @@ Emacs users may install the package from MELPA, and then add the following to th
                         :fetcher github
                         :repo "codefalling/vue-mode")))
    ```
-   5. Locate, in the same file, the section named `defun dotspacemacs/user-config ()`
+   5. Locate, in the same file, the section named `defun dotspacemacs/user-config ()`.
    6. The following code should go right in that section:
    ```lisp
    (defun dotspacemacs/init-vue-mode ()
@@ -58,10 +58,10 @@ Emacs users may install the package from MELPA, and then add the following to th
    (defun dotspacemacs/init-vue-mode ()
      (use-package vue-mode)))
    ```
-   7. So we made 2 changes to the `.spacemacs` file, time to save them, press `SPC` `f` `s`
-   8. With the saved file, time to make Spacemacs re-read the configuration, pressing `SPC` `f` `e` `R`
+   7. So we made 2 changes to the `.spacemacs` file, time to save them, press `SPC` `f` `s`.
+   8. With the saved file, time to make Spacemacs re-read the configuration, pressing `SPC` `f` `e` `R`.
 
-#### B. The [more complex](http://spacemacs.org/doc/DOCUMENTATION.html#without-a-layer) way: Creating a new specific layer
+#### B. The [more complex](http://spacemacs.org/doc/DOCUMENTATION.html#without-a-layer) way: Creating a new specific layer:
 
    1. Add to your `packages`:
    ```lisp
