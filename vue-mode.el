@@ -76,15 +76,16 @@
 (defconst vue--not-lang-key
   (concat
    "\\(?:"
-   "\\w\\{1,3\\}=" ; Either a 3-character word, or
+   "\\w*[^l]\\w\\w\\w=" ; Anything not starting with a lowercase l, or
    "\\|"
-   "[^l]\\w\\w\\w=" ; Anything not starting with a lowercase l, or
+   "\\w*[^a]\\w\\w=" ; Anything without a in the second position, or
    "\\|"
-   "\\w[^a]\\w\\w=" ; Anything without a in the second position, or
+   "\\w*[^n]\\w=" ; Anything without n in the third position, or
    "\\|"
-   "\\w\\w[^n]\\w=" ; Anything without n in the third position, or
+   "\\w*[^g]=" ; Anything not ending with g, or
    "\\|"
-   "\\w\\w\\w[^g]=" ; Anything without g in the fourth position, or
+   "g=" ; Just g, or
+   "\\|"
    "\\w\\{5,\\}=" ; A 5+-character word
    "\\)")
   "Matches anything but 'lang'. See `vue--front-tag-regex'")
@@ -102,7 +103,7 @@ To be formatted with the tag name, and the language.")
 
 (defconst vue--front-tag-regex
   (concat "<%s"                        ; The tag name
-          "\\(?: +" vue--not-lang-key "\".*?\" *?\\)*" ; Any optional key-value pairs like type="foo/bar".
+          "\\(?: +" vue--not-lang-key "\"[^\"]*?\" *?\\)*" ; Any optional key-value pairs like type="foo/bar".
           ;; ^ Disallow "lang" in k/v pairs to avoid matching regions with non-default languages
           "\\(?: +scoped\\)?"          ; The optional "scoped" attribute
           "\\(?: +module\\)?"          ; The optional "module" attribute
