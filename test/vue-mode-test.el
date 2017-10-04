@@ -1,6 +1,6 @@
 (load-file "./vue-mode.el")
 (require 'vue-mode)
-(require 'subr-x)
+(require 's)
 (require 'cl-lib)
 
 (defconst vue--lang-start-tags
@@ -104,16 +104,16 @@
 
 (ert-deftest vue--re-test ()
   (dolist (tag vue--start-tags)
-    (should (string-match-p
+    (should (s-matches?
              (format vue--front-tag-regex "[a-z]+")
              tag))
-    (should (not (string-match-p
+    (should (not (s-matches?
                   (format vue--front-tag-lang-regex "[a-z]+" "[a-z0-9]+")
                   tag))))
   (dolist (tag vue--lang-start-tags)
-    (should (not (string-match-p
+    (should (not (s-matches?
                   (format vue--front-tag-regex "[a-z]+")
                   tag)))
-    (should (string-match-p
+    (should (s-matches?
              (format vue--front-tag-lang-regex "[a-z]+" "[a-z0-9]+")
              tag))))
