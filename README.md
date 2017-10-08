@@ -11,88 +11,65 @@ Emacs major mode for vue.js based on `mmm-mode`.
 
 # Install
 
-Emacs users may install the package from MELPA, and then add the following to their `init.el`:
-
-```elisp
-(require 'vue-mode)
-```
-
-`vue-mode` should then be activated on all files with a `.vue` extension.
+Emacs users may install the package from MELPA. `vue-mode` should then be
+activated on all files with a `.vue` extension.
 
 ## Spacemacs
 
-### There are [two ways](http://spacemacs.org/doc/DOCUMENTATION.html#configure-packages) to install and configure Spacemacs Packages:
+There are [two
+ways](http://spacemacs.org/doc/DOCUMENTATION.html#configure-packages) to install
+and configure vue-mode when using spacemacs.
 
-#### A. The fastest way: Adding the necessary configurations to the default configuration file `.spacemacs`.
+#### The Simple Way, Without a Layer
 
-   1. Within any screen in Spacemacs (including the Splash Screen, after loading), press `SPC` `f` `e` `d`.
-   2. This will bring you to the edit screen of the `.spacemacs` file.
-   3. Locate the section named `dotspacemacs-additional-packages '()`.
-   4. The following code should go inside the above parenthesis:
-   ```lisp
-   (vue-mode :location (recipe
-                        :fetcher github
-                        :repo "codefalling/vue-mode"))
-   ```
-   The section should look like this, after the update:
-   ```lisp
-   dotspacemacs-additional-packages '(
-   (vue-mode :location (recipe
-                        :fetcher github
-                        :repo "codefalling/vue-mode")))
-   ```
-   5. Locate, in the same file, the section named `defun dotspacemacs/user-config ()`.
-   6. The following code should go right in that section:
-   ```lisp
-   (defun dotspacemacs/init-vue-mode ()
-     (use-package vue-mode))
-   ```
-   • So the section should look like this, after the update:
-   ```lisp
-   (defun dotspacemacs/user-config ()
-   "Configuration function for user code.
-   This function is called at the very end of Spacemacs initialization after
-   layers configuration.
-   This is the place where most of your configurations should be done. Unless it is
-   explicitly specified that a variable should be set before a package is loaded,
-   you should place your code here."
-   (defun dotspacemacs/init-vue-mode ()
-     (use-package vue-mode)))
-   ```
-   7. So we made 2 changes to the `.spacemacs` file, time to save them, press `SPC` `f` `s`.
-   8. With the saved file, time to make Spacemacs re-read the configuration, pressing `SPC` `f` `e` `R`.
+Spacemacs allows the installation of additional packages outside of its layer
+system using the `dotspacemacs-additional-packages` variable. Add `vue-mode` to
+this list.
 
-#### B. The [more complex](http://spacemacs.org/doc/DOCUMENTATION.html#without-a-layer) way: Creating a new specific layer:
+Edit your `~/.spacemacs` file as follows (to find it press `SPC` `f` `e` `d`):
 
-   1. Add to your `packages`:
-   ```lisp
-   (vue-mode :location (recipe
-                        :fetcher github
-                        :repo "codefalling/vue-mode"))
-   ```
-   2. Add to your `package.el`:
+```lisp
+dotspacemacs-additional-packages '(vue-mode)
+```
 
-   ```lisp
-   (defun your-layer-name/init-vue-mode ()
-     (use-package vue-mode))
-   ```
+#### With a Layer
 
+Creating a layer is a more complicated method of installing the package, but it
+allows for greater flexibility, and faster started via autoloading. You can read
+more about it here: [Spacemacs Layers](http://spacemacs.org/doc/LAYERS.html).
 
-   3. If you want to customize the region background color (default is highlight):
+The following is a minimal `package.el` file for a custom `vue-mode` layer:
 
-   ```lisp
-   (defun your-layer-name/init-vue-mode ()
-     (use-package vue-mode
-       :config
-       ;; 0, 1, or 2, representing (respectively) none, low, and high coloring
-       (setq mmm-submode-decoration-level 0)))
-   ```
+```lisp
+(setq vue-mode-packages
+      '(
+        vue-mode
+        )
+      )
+
+(setq vue-mode-excluded-packages '())
+
+(defun vue-mode/init-vue-mode ()
+  "Initialize my package"
+  (use-package vue-mode))
+```
+
+If you want to customize the region background color (default is highlight):
+
+```lisp
+(defun vue-mode/init-vue-mode ()
+  (use-package vue-mode
+               :config
+               ;; 0, 1, or 2, representing (respectively) none, low, and high coloring
+               (setq mmm-submode-decoration-level 0)))
+```
 
 # Q&A
 
 ## Why `js-mode` instead of `js2-mode`?
 
-`js2-mode` does not yet work with "multi-mode" modes such as mmm-mode. See https://github.com/mooz/js2-mode/issues/124.
+`js2-mode` does not yet work with "multi-mode" modes such as mmm-mode. See
+https://github.com/mooz/js2-mode/issues/124.
 
 ## Mode didn't get updated when `lang` changed
 
