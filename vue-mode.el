@@ -200,8 +200,8 @@ open in a window."
 (define-derived-mode vue-mode html-mode "vue"
   (when (not vue-initialized)
     (vue--setup-mmm))
-  (setq mmm-indent-line-function #'mmm-indent-line-narrowed)
-  (setq indent-region-function #'mmm-indent-region))
+  (setq-local mmm-indent-line-function #'mmm-indent-line-narrowed)
+  (setq-local indent-region-function #'mmm-indent-region))
 
 ;;;###autoload
 (setq mmm-global-mode 'maybe)
