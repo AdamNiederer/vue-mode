@@ -153,7 +153,7 @@ open in a window."
     (dolist (ol (mmm-overlays-contained-in (point-min) (point-max)))
       (let* ((window (split-window-below))
              (mode (overlay-get ol 'mmm-mode))
-             (buffer (edit-indirect-region (overlay-start ol) (overlay-end ol)))) ; (buffer (generate-new-buffer (concat (file-name-base (buffer-file-name)) "@" (int-to-string (overlay-start ol)))))
+             (buffer (edit-indirect-region (overlay-start ol) (overlay-end ol))))
         (maximize-window)
         (with-current-buffer buffer
           (funcall mode))
