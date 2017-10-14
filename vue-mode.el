@@ -142,6 +142,28 @@ To be formatted with the tag name.")
     (user-error "Not in a template subsection")))
 
 ;;;###autoload
+(defun vue-mode-edit-all-indirect (&optional keep-windows)
+  "Open all subsections with `edit-indirect-mode' in seperate windows.
+If KEEP-WINDOWS is set, do not delete other windows and keep the root window
+open in a window."
+  (interactive "P")
+  (when (not keep-windows)
+    (delete-other-windows))
+  (save-selected-window
+    (dolist (ol (mmm-overlays-contained-in (point-min) (point-max)))
+      (let* ((window (split-window-below))
+             (mode (overlay-get ol 'mmm-mode))
+             (buffer (edit-indirect-region (overlay-start ol) (overlay-end ol)))) ; (buffer (generate-new-buffer (concat (file-name-base (buffer-file-name)) "@" (int-to-string (overlay-start ol)))))
+        (maximize-window)
+        (with-current-buffer buffer
+          (funcall mode))
+        (set-window-buffer window buffer)))
+    (balance-windows))
+  (when (not keep-windows)
+    (delete-window)
+    (balance-windows)))
+
+;;;###autoload
 (define-derived-mode vue-mode html-mode "vue"
   (when (not vue-initialized)
     (vue--setup-mmm)))
