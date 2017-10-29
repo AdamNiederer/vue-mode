@@ -130,6 +130,39 @@ To be formatted with the tag name.")
   (interactive)
   (mmm-parse-buffer))
 
+(defun vue-mmm-indent-line-narrowed ()
+  "An indent function which works on some modes where `mmm-indent-line' doesn't.
+Works like `mmm-indent-line', but narrows the buffer before indenting to
+appease modes which rely on constructs like (point-min) to indent."
+  (interactive)
+  (mmm-update-submode-region)
+  (if mmm-current-overlay
+      (save-restriction
+        (mmm-narrow-to-submode-region)
+        (funcall (get
+                  (if (and mmm-current-overlay
+                           (> (overlay-end mmm-current-overlay) (point)))
+                      mmm-current-submode
+                    mmm-primary-mode)
+                  'mmm-indent-line-function)))
+    (mmm-indent-line)))
+
+(defun vue-mmm-indent-region (start end)
+  "Indent the region from START to END according to `mmm-indent-line-function'.
+Then, indent all submodes overlapping the region according to
+`mmm-indent-line-function'"
+  (interactive)
+  (save-excursion
+    (while (< (point) end)
+      (indent-according-to-mode)
+      (forward-line 1))
+    ;; Indent each submode in the region seperately
+    (dolist (submode (mmm-overlays-overlapping start end))
+      (goto-char (overlay-start submode))
+      (while (< (point) (min end (overlay-end submode)))
+        (indent-according-to-mode)
+        (forward-line 1)))))
+
 (defun vue-mode-edit-indirect-at-point ()
   "Open the section of the template at point with `edit-indirect-mode'."
   (interactive)
