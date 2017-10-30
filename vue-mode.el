@@ -28,6 +28,7 @@
 ;;; Code:
 
 (require 'mmm-mode)
+(require 'mmm-cmds)
 (require 'vue-html-mode)
 (require 'ssass-mode)
 (require 'edit-indirect)
