@@ -42,10 +42,7 @@ The following is a minimal `package.el` file for a custom `vue-mode` layer:
 
 ```lisp
 (setq vue-mode-packages
-      '(
-        vue-mode
-        )
-      )
+  '(vue-mode))
 
 (setq vue-mode-excluded-packages '())
 
@@ -66,11 +63,11 @@ If you want to customize the region background color (default is highlight):
 
 # Q&A
 
-## Why `js-mode` instead of `js2-mode`?
+#### Why `js-mode` instead of `js2-mode`?
 
 `js2-mode` does not yet work with "multi-mode" modes such as mmm-mode. See
 https://github.com/mooz/js2-mode/issues/124.
 
-## Mode didn't get updated when `lang` changed
+#### How can I reload the submodes in a buffer? 
 
-`M-x vue-mode-reparse`
+Try `M-x vue-mode-reparse`.
