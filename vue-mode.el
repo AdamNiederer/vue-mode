@@ -142,7 +142,7 @@ appease modes which rely on constructs like (point-min) to indent."
         (mmm-narrow-to-submode-region)
         (funcall (get
                   (if (and mmm-current-overlay
-                           (> (overlay-end mmm-current-overlay) (point)))
+                           (>= (overlay-end mmm-current-overlay) (point)))
                       mmm-current-submode
                     mmm-primary-mode)
                   'mmm-indent-line-function)))
