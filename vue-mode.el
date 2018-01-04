@@ -90,6 +90,16 @@ submode to pug-mode."
                        (symbol :format "Submode to activate: %v")))
   :group 'vue)
 
+(defcustom vue-dedicated-modes nil
+  "A list of modes to override in dedicated buffers.
+
+For example, if you would like your javascript to display with
+`js-mode' in the root window and `js2-mode' in a dedicated buffer,
+add an entry with a root mode of `js-mode' and dedicated mode of `js2-mode'"
+  :type '(plist :key-type (symbol :format "Root mode: %v")
+                :value-type (symbol :format "Dedicated mode: %v"))
+  :group 'vue)
+
 (defvar vue-mode-map
   (let ((map (make-keymap)))
     (define-key map (kbd "C-c C-l") 'vue-mode-reparse)
@@ -115,7 +125,7 @@ submode to pug-mode."
    "\\|"
    "\\w\\{5,\\}=" ; A 5+-character word
    "\\)")
-  "Matches anything but 'lang'. See `vue--front-tag-regex'")
+  "Matches anything but 'lang'. See `vue--front-tag-regex'.")
 
 (defconst vue--front-tag-lang-regex
   (concat "<%s"                        ; The tag name
@@ -194,7 +204,8 @@ Then, indent all submodes overlapping the region according to
   "Open the section of the template at point with `edit-indirect-mode'."
   (interactive)
   (if mmm-current-overlay
-      (let ((indirect-mode mmm-current-submode))
+      (let ((indirect-mode (or (plist-get vue-dedicated-modes mmm-current-submode)
+                               mmm-current-submode)))
         (setq-local edit-indirect-after-creation-hook (list (lambda () (funcall indirect-mode))))
         (edit-indirect-region (overlay-start mmm-current-overlay)
                               (1- (overlay-end mmm-current-overlay)) ;; Work around edit-indirect-mode bug
@@ -205,7 +216,7 @@ Then, indent all submodes overlapping the region according to
 (defun vue-mode-edit-all-indirect (&optional keep-windows)
   "Open all subsections with `edit-indirect-mode' in seperate windows.
 If KEEP-WINDOWS is set, do not delete other windows and keep the root window
-open in a window."
+open."
   (interactive "P")
   (when (not keep-windows)
     (delete-other-windows))
