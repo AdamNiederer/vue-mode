@@ -223,7 +223,8 @@ open."
   (save-selected-window
     (dolist (ol (mmm-overlays-contained-in (point-min) (point-max)))
       (let* ((window (split-window-below))
-             (mode (overlay-get ol 'mmm-mode))
+             (mode (or (plist-get vue-dedicated-modes (overlay-get ol 'mmm-mode))
+                       (overlay-get ol 'mmm-mode)))
              (buffer (edit-indirect-region (overlay-start ol) (overlay-end ol))))
         (maximize-window)
         (with-current-buffer buffer
