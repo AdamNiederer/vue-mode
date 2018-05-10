@@ -58,6 +58,7 @@
     (:type style :name css :mode css-mode)
     (:type style :name stylus :mode stylus-mode)
     (:type style :name less :mode less-css-mode)
+    (:type style :name postcss :mode css-mode)
     (:type style :name scss :mode css-mode)
     (:type style :name sass :mode ssass-mode))
   "A list of vue component languages.
