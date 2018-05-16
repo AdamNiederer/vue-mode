@@ -83,7 +83,8 @@ submode to pug-mode."
   :type '(repeat (list (const :format "Language Type: " :type)
                        (choice (const template)
                                (const script)
-                               (const style))
+                               (const style)
+                               (symbol :tag "Custom element type"))
                        (const :format "" :name)
                        (symbol :format "Language Name: %v")
 
