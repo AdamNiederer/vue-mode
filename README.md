@@ -1,6 +1,8 @@
 ![https://github.com/syl20bnr/spacemacs](https://cdn.rawgit.com/syl20bnr/spacemacs/442d025779da2f62fc86c2082703697714db6514/assets/spacemacs-badge.svg)
 [![MELPA](https://melpa.org/packages/vue-mode-badge.svg)](https://melpa.org/#/vue-mode)
 [![Melpa Stable Status](http://melpa-stable.milkbox.net/packages/vue-mode-badge.svg)](http://melpa-stable.milkbox.net/#/vue-mode)
+[![Build Status](https://travis-ci.org/AdamNiederer/vue-mode.svg?branch=master)](https://travis-ci.org/AdamNiederer/vue-mode)
+[![codecov](https://codecov.io/gh/AdamNiederer/vue-mode/branch/master/graph/badge.svg)](https://codecov.io/gh/AdamNiederer/vue-mode)
 
 # vue-mode
 Emacs major mode for vue.js based on `mmm-mode`.
@@ -68,6 +70,6 @@ If you want to customize the region background color (default is highlight):
 `js2-mode` does not yet work with "multi-mode" modes such as mmm-mode. See
 https://github.com/mooz/js2-mode/issues/124.
 
-#### How can I reload the submodes in a buffer? 
+#### How can I reload the submodes in a buffer?
 
 Try `M-x vue-mode-reparse`.
