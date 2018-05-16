@@ -1,11 +1,19 @@
 language: emacs-lisp
-sudo: false
+sudo: required
+dist: bionic
 cache:
   - directories:
+      # Cache stable Emacs binaries (saves 1min per job)
       - "$HOME/emacs/"
+matrix:
+  fast_finish: true
+  allow_failures:
+    - env: EMACS_VERSION=snapshot
+    - env: EMACS_VERSION=26.0.91 PRETEST=yes
 env:
-  - EMACS_VERSION=25.1
-  - EMACS_VERSION=25.2
+  - EMACS_VERSION=25.3
+  - EMACS_VERSION=26.0.91 PRETEST=yes
+  - EMACS_VERSION=snapshot
 before_install:
   - export PATH="$HOME/bin:$PATH"
   - wget 'https://raw.githubusercontent.com/flycheck/emacs-travis/master/emacs-travis.mk'
@@ -16,4 +24,6 @@ install:
 script:
   - cask exec ert-runner
 notifications:
-email: false
+  email: false
+after_success:
+- bash <(curl -s https://codecov.io/bash) -f coverage-final.json
