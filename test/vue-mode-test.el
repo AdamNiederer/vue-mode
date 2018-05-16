@@ -117,3 +117,8 @@
     (should (s-matches?
              (format vue--front-tag-lang-regex "[a-z]+" "[a-z0-9]+")
              tag))))
+
+(ert-deftest vue--crash-test ()
+  (with-temp-buffer
+    (insert-file-contents "test/test.vue")
+    (vue-mode)))
