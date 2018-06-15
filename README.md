@@ -73,3 +73,7 @@ https://github.com/mooz/js2-mode/issues/124.
 #### How can I reload the submodes in a buffer?
 
 Try `M-x vue-mode-reparse`.
+
+#### How do I disable that ugly background color?
+
+Customize `mmm-default-submode-face`. It's an `mmm-mode` default.
