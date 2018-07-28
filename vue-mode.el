@@ -30,6 +30,7 @@
 (require 'mmm-mode)
 (require 'mmm-cmds)
 (require 'vue-html-mode)
+(require 'scss-mode)
 (require 'ssass-mode)
 (require 'edit-indirect)
 
@@ -59,7 +60,7 @@
     (:type style :name stylus :mode stylus-mode)
     (:type style :name less :mode less-css-mode)
     (:type style :name postcss :mode css-mode)
-    (:type style :name scss :mode css-mode)
+    (:type style :name scss :mode scss-mode)
     (:type style :name sass :mode ssass-mode))
   "A list of vue component languages.
 
