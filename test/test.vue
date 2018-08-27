@@ -32,3 +32,8 @@ let x = 2;
 .looks-fine-to-me
   color: red
 </style>
+
+<style key="value" scoped module lang="scss" another-key="another_value?">
+#important
+  color: red
+</style>

@@ -130,23 +130,31 @@ add an entry with a root mode of `js-mode' and dedicated mode of `js2-mode'"
   "Matches anything but 'lang'. See `vue--front-tag-regex'.")
 
 (defconst vue--front-tag-lang-regex
-  (concat "<%s"                              ; The tag name
-          "\\(?: +\\w+=[\"'].*?[\"'] *?\\)*" ; Any optional key-value pairs like type="foo/bar"
-          " +lang=[\"']%s[\"']"              ; The language specifier
-          "\\(?: +\\w+=[\"'].*?[\"'] *?\\)*" ; More optional key-value pairs
-          "\\(?: +scoped\\)?"                ; The optional "scoped" attribute
-          "\\(?: +module\\)?"                ; The optional "module" attribute
-          " *>\n")                           ; The end of the tag
+  (concat "<%s"                               ; The tag name
+          "\\(?:"                             ; Zero of more of...
+          "\\(?:\\s-+\\w+=[\"'].*?[\"']\\)"   ; Any optional key-value pairs like type="foo/bar"
+          "\\|\\(?:\\s-+scoped\\)"            ; The optional "scoped" attribute
+          "\\|\\(?:\\s-+module\\)"            ; The optional "module" attribute
+          "\\)*"
+          "\\(?:\\s-+lang=[\"']%s[\"']\\)"    ; The language specifier (required)
+          "\\(?:"                             ; Zero of more of...
+          "\\(?:\\s-+\\w+=[\"'].*?[\"']\\)"   ; Any optional key-value pairs like type="foo/bar"
+          "\\|\\(?:\\s-+scoped\\)"            ; The optional "scoped" attribute
+          "\\|\\(?:\\s-+module\\)"            ; The optional "module" attribute
+          "\\)*"
+          " *>\n")                            ; The end of the tag
   "A regular expression for the starting tags of template areas with languages.
 To be formatted with the tag name, and the language.")
 
 (defconst vue--front-tag-regex
   (concat "<%s"                        ; The tag name
-          "\\(?: +" vue--not-lang-key "[\"'][^\"']*?[\"'] *?\\)*" ; Any optional key-value pairs like type="foo/bar".
+          "\\(?:"                      ; Zero of more of...
+          "\\(?:\\s-+" vue--not-lang-key "[\"'][^\"']*?[\"']\\)" ; Any optional key-value pairs like type="foo/bar".
           ;; ^ Disallow "lang" in k/v pairs to avoid matching regions with non-default languages
-          "\\(?: +scoped\\)?"          ; The optional "scoped" attribute
-          "\\(?: +module\\)?"          ; The optional "module" attribute
-          " *>\n")                     ; The end of the tag
+          "\\|\\(?:\\s-+scoped\\)"      ; The optional "scoped" attribute
+          "\\|\\(?:\\s-+module\\)"      ; The optional "module" attribute
+          "\\)*"
+          "\\s-*>\n")                     ; The end of the tag
   "A regular expression for the starting tags of template areas.
 To be formatted with the tag name.")
 
