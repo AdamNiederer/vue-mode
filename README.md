@@ -77,3 +77,19 @@ Try `M-x vue-mode-reparse`.
 #### How do I disable that ugly background color?
 
 Customize `mmm-default-submode-face`. It's an `mmm-mode` default.
+
+Add the following lines to your `.emacs.d/init.el` to set a lighter color:
+
+```lisp
+(add-hook 'mmm-mode-hook
+          (lambda ()
+            (set-face-background 'mmm-default-submode-face "#fafafa")))
+```
+
+Or disable the background color completely in your `.emacs.d/init.el`:
+
+```lisp
+(add-hook 'mmm-mode-hook
+          (lambda ()
+            (set-face-background 'mmm-default-submode-face nil)))
+```
