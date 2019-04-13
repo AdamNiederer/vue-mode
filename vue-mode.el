@@ -61,7 +61,10 @@
     (:type style :name less :mode less-css-mode)
     (:type style :name postcss :mode css-mode)
     (:type style :name scss :mode css-mode)
-    (:type style :name sass :mode ssass-mode))
+    (:type style :name sass :mode ssass-mode)
+    (:type i18n :name nil :mode json-mode)
+    (:type i18n :name json :mode json-mode)
+    (:type i18n :name yaml :mode yaml-mode))
   "A list of vue component languages.
 
 A component language consists of a langauge type, name, and
