@@ -139,12 +139,14 @@ add an entry with a root mode of `js-mode' and dedicated mode of `js2-mode'"
           "\\(?:\\s-+\\w+=[\"'].*?[\"']\\)"   ; Any optional key-value pairs like type="foo/bar"
           "\\|\\(?:\\s-+scoped\\)"            ; The optional "scoped" attribute
           "\\|\\(?:\\s-+module\\)"            ; The optional "module" attribute
+          "\\|\\(?:\\s-+setup\\)"             ; The optional "setup" attribute
           "\\)*"
           "\\(?:\\s-+lang=[\"']%s[\"']\\)"    ; The language specifier (required)
           "\\(?:"                             ; Zero of more of...
           "\\(?:\\s-+\\w+=[\"'].*?[\"']\\)"   ; Any optional key-value pairs like type="foo/bar"
           "\\|\\(?:\\s-+scoped\\)"            ; The optional "scoped" attribute
           "\\|\\(?:\\s-+module\\)"            ; The optional "module" attribute
+          "\\|\\(?:\\s-+setup\\)"             ; The optional "setup" attribute
           "\\)*"
           " *>\n")                            ; The end of the tag
   "A regular expression for the starting tags of template areas with languages.
