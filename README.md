@@ -1,6 +1,6 @@
 ![https://github.com/syl20bnr/spacemacs](https://cdn.rawgit.com/syl20bnr/spacemacs/442d025779da2f62fc86c2082703697714db6514/assets/spacemacs-badge.svg)
 [![MELPA](https://melpa.org/packages/vue-mode-badge.svg)](https://melpa.org/#/vue-mode)
-[![Melpa Stable Status](http://melpa-stable.milkbox.net/packages/vue-mode-badge.svg)](http://melpa-stable.milkbox.net/#/vue-mode)
+[![Melpa Stable Status](http://stable.melpa.org/packages/vue-mode-badge.svg)](http://stable.melpa.org/#/vue-mode)
 [![Build Status](https://travis-ci.org/AdamNiederer/vue-mode.svg?branch=master)](https://travis-ci.org/AdamNiederer/vue-mode)
 [![codecov](https://codecov.io/gh/AdamNiederer/vue-mode/branch/master/graph/badge.svg)](https://codecov.io/gh/AdamNiederer/vue-mode)
 
