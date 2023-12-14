@@ -67,10 +67,10 @@
     (:type i18n :name yaml :mode yaml-mode))
   "A list of vue component languages.
 
-A component language consists of a langauge type, name, and
+A component language consists of a language type, name, and
 corresponding submode.
 
-The language type is the tag which this languge is valid under -
+The language type is the tag which this language is valid under -
 one of template, script, or style.
 
 The language name is the value of the lang=\"\" element in the
@@ -207,7 +207,7 @@ Then, indent all submodes overlapping the region according to
     (while (< (point) end)
       (indent-according-to-mode)
       (forward-line 1))
-    ;; Indent each submode in the region seperately
+    ;; Indent each submode in the region separately
     (dolist (submode (mmm-overlays-overlapping start end))
       (goto-char (overlay-start submode))
       (while (< (point) (min end (overlay-end submode)))
@@ -228,7 +228,7 @@ Then, indent all submodes overlapping the region according to
 
 ;;;###autoload
 (defun vue-mode-edit-all-indirect (&optional keep-windows)
-  "Open all subsections with `edit-indirect-mode' in seperate windows.
+  "Open all subsections with `edit-indirect-mode' in separate windows.
 If KEEP-WINDOWS is set, do not delete other windows and keep the root window
 open."
   (interactive "P")
