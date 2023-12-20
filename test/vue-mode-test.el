@@ -66,6 +66,7 @@
   '(;; Bare tags
     "<style>\n"
     "<script>\n"
+    "<script setup>\n"
     "<template>\n"
     "<style scoped>\n"
     ;; Arbitrary k/v
